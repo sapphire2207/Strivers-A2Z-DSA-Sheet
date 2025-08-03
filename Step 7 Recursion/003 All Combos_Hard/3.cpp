@@ -21,7 +21,7 @@ using namespace std;
 class Solution {
   public:
     bool isSafe1(int row, int col, vector < string > board, int n) {
-      // check upper element
+      // check three diagonals (upper left, left, bottom left)
       int duprow = row;
       int dupcol = col;
 
