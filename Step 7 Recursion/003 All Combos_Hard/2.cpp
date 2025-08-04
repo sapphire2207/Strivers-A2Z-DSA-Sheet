@@ -77,7 +77,8 @@ int main() {
 
     string word = "ABCCED";
 
-    bool res = exist(board, word);
+    Solution obj;
+    bool res = obj.exist(board, word);
     if(res==1)
     cout<<"True"<<endl;
     else

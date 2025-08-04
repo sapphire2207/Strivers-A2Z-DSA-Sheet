@@ -13,13 +13,17 @@
 // l: The number of opening parentheses used so far.
 // r: The number of closing parentheses used so far.
 // t: The current combination string formed by adding parentheses.
-// Base Case: The recursion has two base cases within the DFS function: a. Invalid Condition: When the number of used opening parentheses l is more than n, or the closing parentheses r is more than n or more than l, it indicates an incorrect combination. The function returns without doing anything. b. Valid Combination: When both l and r equal n, it indicates that a valid combination of parentheses has been found. The current combination string t is added to the solution set ans.
+// Base Case: The recursion has two base cases within the DFS function: 
+// a. Invalid Condition: When the number of used opening parentheses l is more than n, or the closing parentheses r is more than n or more than l, it indicates an incorrect combination. The function returns without doing anything. 
+// b. Valid Combination: When both l and r equal n, it indicates that a valid combination of parentheses has been found. The current combination string t is added to the solution set ans.
 // Recursive Exploration: If neither base case is met, the function continues to explore:
 // Adding an opening parenthesis: If not all n opening parentheses have been used (l < n), the dfs function calls itself with l + 1, r, and appends "(" to the current string t.
 // Adding a closing parenthesis: If the number of closing parentheses used is less than the number of opening parentheses (r < l), it implies that there are some unmatched opening parentheses. Thus, the dfs function calls itself with l, r + 1, and appends ")" to t.
 // By calling these two lines of code, we ensure that we explore the decisions to either add an opening parenthesis or a closing one, thus generating all valid paths.
 // Storage of Valid Combinations: The ans list is the container that holds all valid combinations. Each time a complete valid combination is generated, it's added to this list. After all recursive calls are completed, ans will contain all the possible well-formed parentheses combinations.
 // Return Result: Finally, once all possible combinations have been explored, the ans list is returned as the result of the generateParenthesis function.
+#include<bits/stdc++.h>
+using namespace std;
 
 class Solution {
 public:

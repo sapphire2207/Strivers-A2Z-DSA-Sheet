@@ -34,6 +34,8 @@
 // After exploring a number's inclusion, we backtrack by removing the number from the current combination and exploring the possibility of not including that number.
 // Through this process of including and excluding each number, and backtracking after exploring each possibility, we ensure that all valid combinations are found.
 // Each combination is built up incrementally from the smaller numbers towards the larger ones to avoid repeated combinations and maintain uniqueness.
+#include<bits/stdc++.h>
+using namespace std;
 
 class Solution {
 public:
