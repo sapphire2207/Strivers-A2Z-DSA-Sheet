@@ -66,7 +66,7 @@ int main() {
 // Memorization Approach
 // This question is a slight modification of the problem discussed in Count Subsets with Sum K.
 // We have the following two conditions given to us.
-// S1 + S2 = D   – (i)
+// S1 - S2 = D   – (i)
 // S1 >= S2     – (ii)
 //  If we calculate the total sum of elements of the array (say totSum), we can say that,
 // S1 = totSum - S2      – (iii)
