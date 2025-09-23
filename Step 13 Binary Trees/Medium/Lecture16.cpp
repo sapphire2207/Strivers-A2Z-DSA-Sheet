@@ -12,7 +12,7 @@
 // This arises as we calculate the diameter of each node and to calculate the height of its left and right children, we traverse the tree which is proportional to the number of nodes.
 // Since this calculation is performed for each node in the tree, the complexity becomes: O(N x N) ~ O(N2).
 // Space Complexity : O(1) as no additional data structures or memory is allocated.O(H): Recursive Stack Space is used to calculate the height of the tree at each node which is proportional to the height of the tree.The recursive nature of the getHeight function, which incurs space on the call stack for each recursive call until it reaches the leaf nodes or the height of the tree.
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct TreeNode {
@@ -27,22 +27,28 @@ struct TreeNode {
 class Solution {
 public:
     int diameter = 0;
-    int diameterOfBinaryTree(TreeNode* root) {
-        calculateHeight(root);
-        return diameter;
+
+    int height(TreeNode* root) {
+        if (root == nullptr) return 0;
+        return 1 + max(height(root->left), height(root->right));
     }
 
-    int calculateHeight(TreeNode* root){
-        if(root == nullptr){
-            return 0;
-        }
+    void findMaxDiameter(TreeNode* root) {
+        if (root == nullptr) return;
 
-        int leftHeight = calculateHeight(root -> left);
-        int rightHeight = calculateHeight(root -> right);
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
 
         diameter = max(diameter, leftHeight + rightHeight);
 
-        return 1 + max(leftHeight, rightHeight);
+        findMaxDiameter(root->left);
+        findMaxDiameter(root->right);
+    }
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        diameter = 0;
+        findMaxDiameter(root);
+        return diameter;
     }
 };
 
