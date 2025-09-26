@@ -3,6 +3,64 @@
 // Problem Statement: Given a binary tree, Find the Lowest Common Ancestor for two given Nodes (x,y).
 // Lowest Common Ancestor(LCA): The lowest common ancestor is defined between two nodes x and y as the lowest node in T that has both x and y as descendants (where we allow a node to be a descendant of itself.
 
+// Brute Force:
+// Find the path from root to p and path from root to q.
+// Store both paths in two arrays/vectors.
+// Traverse both arrays from the beginning until the values differ.
+// The last common value before they differ is the LCA.
+// Complexity
+// Time: O(2N) (we traverse tree twice to find paths)
+// Space: O(2N) (to store paths)
+#include <bits/stdc++.h>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+class Solution {
+public:
+    // Helper function to get path from root to a given node
+    bool getPath(TreeNode* root, vector<TreeNode*>& path, TreeNode* target) {
+        if (!root) return false;
+
+        // Add current node
+        path.push_back(root);
+
+        // If found the target node
+        if (root == target) return true;
+
+        // Recur left or right
+        if (getPath(root->left, path, target) || getPath(root->right, path, target))
+            return true;
+
+        // Backtrack
+        path.pop_back();
+        return false;
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        vector<TreeNode*> path1, path2;
+
+        // Get root-to-node paths
+        getPath(root, path1, p);
+        getPath(root, path2, q);
+
+        // Compare paths
+        int i = 0;
+        while (i < path1.size() && i < path2.size() && path1[i] == path2[i]) {
+            i++;
+        }
+
+        // The last common node
+        return path1[i - 1];
+    }
+};
+
+// Optimal Method:
 // Intuition:
 // The very first thing we can observe from the question is that we can find the LCA of 2 given nodes from 
 //         i) Left subtree or in
@@ -58,6 +116,9 @@ public:
         }
         else if(right == NULL) {
             return left;
+        }
+        else if(left == NULL && right == NULL){
+            return NULL;
         }
         else { //both left and right are not null, we found our result
             return root;

@@ -51,6 +51,7 @@ public:
             else{
                 if(root -> right != nullptr && root -> right -> val == key){
                     root -> right = helper(root -> right);
+                    break;
                 }
                 else{
                     root = root -> right;

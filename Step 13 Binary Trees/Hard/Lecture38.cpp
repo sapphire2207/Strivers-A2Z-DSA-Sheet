@@ -23,15 +23,15 @@ public:
 
     TreeNode* prev = nullptr;
 
-    void flatten(TreeNode* root) {
-        if(root == nullptr){
+    void flatten(TreeNode* node) {
+        if(node == nullptr){
             return;
         }
-        flatten(root -> right);
-        flatten(root -> left);
-        root -> right = prev;
-        root -> left = nullptr;
-        prev = root;
+        flatten(node -> right);
+        flatten(node -> left);
+        node -> right = prev;
+        node -> left = nullptr;
+        prev = node;
     }
 };
 
